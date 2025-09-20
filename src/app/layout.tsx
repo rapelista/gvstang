@@ -23,8 +23,8 @@ export default function RootLayout({
           <div
             className={cn(
               "grid md:grid-cols-3 lg:grid-cols-4",
-              "pt-4 [&>*]:px-6 gap-y-6",
-              "md:pt-8 md:[&>*]:px-12 md:gap-y-12"
+              "pt-4 pb-8 [&>*]:px-6 gap-y-6",
+              "md:pt-8 md:pb-12 md:[&>*]:px-12 md:gap-y-12"
             )}
           >
             <div className="space-y-6">
@@ -45,6 +45,10 @@ export default function RootLayout({
             {children}
           </div>
         </div>
+
+        <footer className="max-w-sm mx-auto text-center text-sm pb-8 md:pb-12">
+          Made with ♥ by Gvstang &mdash; 2025
+        </footer>
       </body>
     </html>
   );
