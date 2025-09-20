@@ -1,9 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import { useState } from "react";
 import { WORDS } from "~/lib/constants";
 import { getRandomInt } from "~/lib/utils";
+import { BrandLink } from "./brand-link";
 
 interface BrandProps {
   initialIndex: number;
@@ -15,9 +15,7 @@ export function Brand({ initialIndex }: BrandProps) {
 
   return (
     <div>
-      <Link
-        href="/"
-        className="text-2xl font-medium"
+      <BrandLink
         onClick={() => {
           setIndex((prev) => {
             let index = null;
@@ -29,9 +27,8 @@ export function Brand({ initialIndex }: BrandProps) {
             return index;
           });
         }}
-      >
-        Gvstang
-      </Link>
+      />
+
       <pre className="font-light italic">{word}</pre>
     </div>
   );
