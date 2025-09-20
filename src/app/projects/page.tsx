@@ -1,3 +1,9 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Projects",
+};
+
 export default function Page() {
   return (
     <main className="md:col-span-2 space-y-6">
