@@ -1,1 +1,9 @@
 @import "tailwindcss";
+
+:root {
+  --color-black: #090909;
+}
+
+body {
+  @apply bg-black text-white;
+}
