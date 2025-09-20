@@ -1,4 +1,4 @@
-export default function Home() {
+export default function Page() {
   return (
     <main className="md:col-span-2 space-y-6">
       <h1 className="text-4xl font-medium">Home</h1>

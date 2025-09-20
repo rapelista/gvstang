@@ -34,10 +34,10 @@ export default function RootLayout({
 
               <ul className="text-lg">
                 <li>
-                  <Link href="#">Blog</Link>
+                  <Link href="/blog">Blog</Link>
                 </li>
                 <li>
-                  <Link href="#">Projects</Link>
+                  <Link href="/projects">Projects</Link>
                 </li>
               </ul>
             </div>
