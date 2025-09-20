@@ -1,7 +1,7 @@
 import { fontMono, fontSans } from "~/configs/fonts";
 import { cn } from "~/lib/utils";
 
-import "./globals.css";
+import "~/styles/globals.css";
 
 export { metadata } from "~/configs/site";
 
