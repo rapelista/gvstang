@@ -1,9 +1,11 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { WORDS } from "~/lib/constants";
-import { getRandomInt } from "~/lib/utils";
-import { BrandLink } from "./brand-link";
+import { useState } from 'react';
+
+import { WORDS } from '~/lib/constants';
+import { getRandomInt } from '~/lib/utils';
+
+import { BrandLink } from './brand-link';
 
 interface BrandProps {
   initialIndex: number;

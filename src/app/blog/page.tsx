@@ -1,7 +1,7 @@
-import type { Metadata } from "next";
+import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Blog",
+  title: 'Blog',
 };
 
 export default function Page() {
@@ -15,7 +15,7 @@ export default function Page() {
         <div
           key={i}
           className="h-40 aspect-video bg-accent animate-pulse"
-        ></div>
+         />
       ))}
     </main>
   );

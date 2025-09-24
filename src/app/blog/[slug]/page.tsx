@@ -10,7 +10,7 @@ export default async function Page({
 }
 
 export function generateStaticParams() {
-  const slugs = ["welcome", "about"];
+  const slugs = ['welcome', 'about'];
 
   return slugs.map((slug) => ({ slug }));
 }

@@ -1,0 +1,21 @@
+# Ignore artifacts:
+build
+coverage
+
+public
+
+# Ignore dependencies:
+pnpm-lock.yaml
+
+# Ignore IDE/editor specific files:
+.vscode
+.idea
+
+# Ignore OS specific files:
+.DS_Store
+
+# Ignore logs:
+*.log
+
+# Ignore migration files:
+src/db/migrations

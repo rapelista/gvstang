@@ -1,13 +1,14 @@
-import Link from "next/link";
-import { Suspense } from "react";
-import { BrandLoading } from "~/components/brand-loading";
-import { BrandWrapper } from "~/components/brand-wrapper";
-import { fontMono, fontSans } from "~/configs/fonts";
-import { cn } from "~/lib/utils";
+import Link from 'next/link';
+import { Suspense } from 'react';
 
-import "~/styles/globals.css";
+import { BrandLoading } from '~/components/brand-loading';
+import { BrandWrapper } from '~/components/brand-wrapper';
+import { fontMono, fontSans } from '~/configs/fonts';
+import { cn } from '~/lib/utils';
 
-export { metadata } from "~/configs/site";
+import '~/styles/globals.css';
+
+export { metadata } from '~/configs/site';
 
 export const experimental_ppr = true;
 
@@ -17,14 +18,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn(fontSans.variable, fontMono.variable)}>
+    <html className={cn(fontSans.variable, fontMono.variable)} lang="en">
       <body>
         <div className="container mx-auto max-w-[1440px]">
           <div
             className={cn(
-              "grid md:grid-cols-3 lg:grid-cols-4",
-              "pt-4 pb-8 [&>*]:px-6 gap-y-6",
-              "md:pt-8 md:pb-12 md:[&>*]:px-12 md:gap-y-12"
+              'grid md:grid-cols-3 lg:grid-cols-4',
+              'pt-4 pb-8 [&>*]:px-6 gap-y-6',
+              'md:pt-8 md:pb-12 md:[&>*]:px-12 md:gap-y-12',
             )}
           >
             <div className="space-y-6">

@@ -1,4 +1,4 @@
-import { BrandLink } from "./brand-link";
+import { BrandLink } from './brand-link';
 
 export function BrandLoading() {
   return (
