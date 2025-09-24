@@ -11,8 +11,6 @@ export const metadata: Metadata = {
 export default function Page() {
   const posts = getBlogPosts();
 
-  console.log(posts);
-
   return (
     <main className="md:col-span-2 space-y-6">
       <h1 className="text-4xl font-medium">Blog</h1>

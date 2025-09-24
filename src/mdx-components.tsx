@@ -1,6 +1,10 @@
 import type { MDXComponents } from 'mdx/types';
 
-const components = {} satisfies MDXComponents;
+import { CodePreview } from '~/components/code-preview';
+
+const components = {
+  pre: CodePreview,
+} satisfies MDXComponents;
 
 export function useMDXComponents(): MDXComponents {
   return components;

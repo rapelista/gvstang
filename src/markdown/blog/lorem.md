@@ -4,18 +4,24 @@ title: This is Lorem Ipsum
 
 # Intus est alumno
 
+```typescript
+console.log('hi');
+```
+
 ## Potentia est sentit te
 
 Lorem markdownum Tremorque campus vulneribus pectoris te pennis interea, sed
 quippe et. Finire ramum nocte quereris.
 
-    icsFiSmartphone += graphics - freewareIscsi + 30 * power_software;
-    logic_rgb_vram.fragmentation = vaporware_pppoe_wildcard;
-    power.dcim_desktop = rw(undoLogic, redundancyProcessorMegabit /
-            exportTutorialServlet + trim_syntax_core, 59906 + index_driver_plug
-            + 1);
-    optical *= grep;
-    switch = -3;
+```bash
+icsFiSmartphone += graphics - freewareIscsi + 30 * power_software;
+logic_rgb_vram.fragmentation = vaporware_pppoe_wildcard;
+power.dcim_desktop = rw(undoLogic, redundancyProcessorMegabit /
+        exportTutorialServlet + trim_syntax_core, 59906 + index_driver_plug
+        + 1);
+optical *= grep;
+switch = -3;
+```
 
 ## Numina missa potuissent formam
 
