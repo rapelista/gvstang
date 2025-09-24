@@ -9,7 +9,7 @@ export default function Page() {
     <main className="md:col-span-2 space-y-6">
       <h1 className="text-4xl font-medium">Home</h1>
 
-      <hr className="opacity-10" />
+      <hr />
 
       <h3 className="text-xl font-medium">About</h3>
 
