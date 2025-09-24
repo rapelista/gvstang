@@ -1,8 +1,8 @@
-import Link from 'next/link';
 import { Suspense } from 'react';
 
 import { BrandLoading } from '~/components/brand-loading';
 import { BrandWrapper } from '~/components/brand-wrapper';
+import { Navbar } from '~/components/navbar';
 import { fontMono, fontSans } from '~/configs/fonts';
 import { cn } from '~/lib/utils';
 
@@ -33,14 +33,7 @@ export default function RootLayout({
                 <BrandWrapper />
               </Suspense>
 
-              <ul className="text-lg">
-                <li>
-                  <Link href="/blog">Blog</Link>
-                </li>
-                <li>
-                  <Link href="/projects">Projects</Link>
-                </li>
-              </ul>
+              <Navbar />
             </div>
 
             {children}
