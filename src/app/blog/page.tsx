@@ -1,19 +1,15 @@
 import type { Metadata } from 'next';
 
-import { readdirSync } from 'node:fs';
-import path from 'node:path';
-
 import Link from 'next/link';
+
+import { getMarkdownFileNames } from '~/lib/markdown';
 
 export const metadata: Metadata = {
   title: 'Blog',
 };
 
 export default function Page() {
-  const blogPostsDir = path.join(process.cwd(), 'src/markdown/blog');
-  const files = readdirSync(blogPostsDir).map((file) =>
-    file.replace(/\.md?$/, ''),
-  );
+  const files = getMarkdownFileNames();
 
   return (
     <main className="md:col-span-2 space-y-6">

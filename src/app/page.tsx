@@ -22,19 +22,13 @@ export default function Page() {
       <h3 className="text-xl font-medium mt-12">Recent Posts</h3>
 
       {Array.from({ length: 3 }, (_, i) => (
-        <div
-          key={i}
-          className="h-40 aspect-video bg-accent animate-pulse"
-         />
+        <div key={i} className="h-40 aspect-video bg-accent animate-pulse" />
       ))}
 
       <h3 className="text-xl font-medium mt-12">Curated Projects</h3>
 
       {Array.from({ length: 3 }, (_, i) => (
-        <div
-          key={i}
-          className="h-40 aspect-video bg-accent animate-pulse"
-         />
+        <div key={i} className="h-40 aspect-video bg-accent animate-pulse" />
       ))}
     </main>
   );

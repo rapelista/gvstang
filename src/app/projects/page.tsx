@@ -12,10 +12,7 @@ export default function Page() {
       <hr className="opacity-10" />
 
       {Array.from({ length: 6 }, (_, i) => (
-        <div
-          key={i}
-          className="h-40 aspect-video bg-accent animate-pulse"
-         />
+        <div key={i} className="h-40 aspect-video bg-accent animate-pulse" />
       ))}
     </main>
   );

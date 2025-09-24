@@ -1,3 +1,5 @@
+import { getMarkdownFileNames } from '~/lib/markdown';
+
 export default async function Page({
   params,
 }: {
@@ -10,7 +12,7 @@ export default async function Page({
 }
 
 export function generateStaticParams() {
-  const slugs = ['welcome', 'about'];
+  const slugs = getMarkdownFileNames();
 
   return slugs.map((slug) => ({ slug }));
 }
