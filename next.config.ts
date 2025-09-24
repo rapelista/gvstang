@@ -13,11 +13,14 @@ const withMdx = createMdx({
   extension: /\.(md|mdx)$/,
   options: {
     remarkPlugins: [
-      'remark-heading-id',
       'remark-frontmatter',
       ['remark-mdx-frontmatter', { name: 'metadata' }],
       'remark-gfm',
-      'remark-toc',
+    ],
+    rehypePlugins: [
+      'rehype-slug',
+      '@stefanprobst/rehype-extract-toc',
+      ['@stefanprobst/rehype-extract-toc/mdx', { name: 'toc' }],
     ],
   },
 });

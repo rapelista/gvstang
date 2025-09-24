@@ -1,4 +1,4 @@
-import { getBlogPosts, getBlogPostsMetadata } from '~/lib/markdown';
+import { getBlogPostData, getBlogPosts } from '~/lib/markdown';
 
 export default async function Page({
   params,
@@ -6,9 +6,9 @@ export default async function Page({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const { default: Post } = await import(`~/markdown/blog/${slug}.mdx`);
+  const { Component } = await getBlogPostData(`${slug}.mdx`);
 
-  return <Post />;
+  return <Component />;
 }
 
 export async function generateStaticParams() {
@@ -23,7 +23,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const metadata = await getBlogPostsMetadata(`${slug}.mdx`);
+  const { metadata } = await getBlogPostData(`${slug}.mdx`);
 
   return metadata;
 }
