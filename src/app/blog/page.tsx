@@ -8,8 +8,8 @@ export const metadata: Metadata = {
   title: 'Blog',
 };
 
-export default function Page() {
-  const posts = getBlogPosts();
+export default async function Page() {
+  const posts = await getBlogPosts();
 
   return (
     <main className="md:col-span-2 space-y-6">

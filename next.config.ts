@@ -12,7 +12,11 @@ const nextConfig: NextConfig = {
 const withMdx = createMdx({
   extension: /\.(md|mdx)$/,
   options: {
-    remarkPlugins: ['remark-frontmatter', 'remark-gfm'],
+    remarkPlugins: [
+      'remark-frontmatter',
+      ['remark-mdx-frontmatter', { name: 'metadata' }],
+      'remark-gfm',
+    ],
   },
 });
 
