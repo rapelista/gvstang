@@ -4,6 +4,7 @@ import { Suspense } from 'react';
 import { BrandLoading } from '~/components/brand-loading';
 import { BrandWrapper } from '~/components/brand-wrapper';
 import { ThemeProvider } from '~/components/theme-provider';
+import { ThemeSwitcher } from '~/components/theme-switcher';
 import { fontMono, fontSans } from '~/configs/fonts';
 import { cn } from '~/lib/utils';
 
@@ -52,6 +53,8 @@ export default function RootLayout({
                     <Link href="/projects">Projects</Link>
                   </li>
                 </ul>
+
+                <ThemeSwitcher />
               </div>
 
               {children}
