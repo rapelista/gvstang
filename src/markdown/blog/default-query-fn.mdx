@@ -1,0 +1,320 @@
+---
+authors:
+  name: Farih Akmal Haqiqi
+description:
+  Tired of writing the same queryFn over and over? Here's a simple trick I use
+  to make React Query cleaner and more DRY. No more repetitive fetch logic —
+  just clean, type-safe code that scales! 🚀
+title: Simplify React Query with Default queryFn — A Clean Approach
+published: 2025-09-26
+---
+
+# Simplify React Query with Default queryFn — A Clean Approach
+
+Ever found yourself writing the same `queryFn` over and over again in every
+`useQuery` call? Or getting tired of creating custom hooks for every single API
+endpoint? I'll share a simple trick I've been using in my projects to make React
+Query more efficient and DRY.
+
+## The Problem We All Face
+
+Usually, we write React Query like this:
+
+```typescript
+// Users endpoint
+const { data: users } = useQuery({
+  queryKey: ['users'],
+  queryFn: async () => {
+    const response = await fetch('/api/users');
+    return response.json();
+  },
+});
+
+// Products endpoint
+const { data: products } = useQuery({
+  queryKey: ['products'],
+  queryFn: async () => {
+    const response = await fetch('/api/products');
+    return response.json();
+  },
+});
+
+// Categories endpoint
+const { data: categories } = useQuery({
+  queryKey: ['categories'],
+  queryFn: async () => {
+    const response = await fetch('/api/categories');
+    return response.json();
+  },
+});
+```
+
+See the problem? **We're writing the same fetch logic repeatedly!** 😩
+
+## Solution: Leverage Default queryFn
+
+React Query actually has a `defaultOptions` feature that we can use to create a
+global `queryFn`. This means we don't need to write `queryFn` in every
+`useQuery` anymore.
+
+```typescript
+function makeQueryClient() {
+  return new QueryClient({
+    defaultOptions: {
+      queries: {
+        queryFn: async ({ queryKey, signal }) => {
+          const [context] = queryKey as [string];
+
+          // ... rest of logic
+
+          return await fetch(context);
+        },
+      },
+    },
+  });
+}
+```
+
+## Adding Type Safety with QueryKey Declaration
+
+To make this approach even better, we can define proper TypeScript types for our
+query keys using TanStack Query's module augmentation:
+
+```typescript
+import '@tanstack/react-query';
+
+type QueryKey = [
+  'users' | 'products' | 'categories' | 'dashboard' | 'orders',
+  ...ReadonlyArray<unknown>,
+];
+
+declare module '@tanstack/react-query' {
+  interface Register {
+    queryKey: QueryKey;
+    mutationKey: QueryKey;
+  }
+}
+```
+
+This gives us:
+
+- **IntelliSense support** for query keys
+- **Type safety** at compile time
+- **Better developer experience** with autocomplete
+
+## How It Works
+
+The concept is beautifully simple:
+
+1. **Query Key as URL**: We use the `queryKey` directly as the endpoint URL
+2. **One Function to Rule Them All**: A single function handles all GET requests
+3. **Convention Over Configuration**: We establish a convention where the first
+   query key = endpoint URL
+4. **Type Safety**: TypeScript ensures we only use valid query keys
+
+## Usage Examples
+
+After the setup above, usage becomes incredibly simple:
+
+```typescript
+// Get all users - TypeScript will validate 'users' is allowed
+const { data: users } = useQuery({
+  queryKey: ['users'],
+});
+
+// Get all products
+const { data: products } = useQuery({
+  queryKey: ['products'],
+});
+
+// Get specific user by ID
+const { data: user } = useQuery({
+  queryKey: [`users/${userId}`], // Dynamic endpoints work too!
+});
+
+// Get dashboard data
+const { data: dashboard } = useQuery({
+  queryKey: ['dashboard'],
+});
+```
+
+**No more repetitive `queryFn`!** 🎉
+
+## Advanced Implementation
+
+Here's a more robust implementation that handles parameters:
+
+```typescript
+function makeQueryClient() {
+  return new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: 60 * 1000,
+        queryFn: async ({ queryKey, signal }) => {
+          const [context, params] = queryKey;
+
+          const headers = new Headers();
+
+          // Assume we have custom functions to handle these things
+          return await request(generateUrl(context, params), {
+            signal,
+            headers,
+          });
+        },
+      },
+    },
+  });
+}
+```
+
+With corresponding TypeScript types:
+
+```typescript
+import '@tanstack/react-query';
+
+type QueryKey = [context: string, params?: ParamsType];
+
+declare module '@tanstack/react-query' {
+  interface Register {
+    queryKey: QueryKey;
+    mutationKey: QueryKey;
+  }
+}
+```
+
+## Benefits of This Approach
+
+### 1. **Super Clean Code**
+
+No unnecessary complexity. Query key = endpoint configuration, that's it!
+Perfect for straightforward GET requests.
+
+### 2. **DRY Principle**
+
+No more writing `async () => fetch()` repeatedly. All GET logic in one place.
+
+### 3. **Type Safety**
+
+TypeScript catches invalid query keys at compile time, preventing runtime
+errors.
+
+### 4. **Consistency**
+
+All requests go through the same logic, making behavior predictable. Error
+handling, caching, business logic - all consistent.
+
+### 5. **Scalability**
+
+Need a new endpoint? Just add it to the type definition and use the appropriate
+query key. Done!
+
+### 6. **Developer Experience**
+
+IntelliSense and autocomplete make development faster and less error-prone.
+
+## Real-World Example
+
+In a production application, this looks like:
+
+```typescript
+// Dashboard component
+function Dashboard() {
+  const { data: stats } = useQuery({
+    queryKey: ['dashboard/stats', { period: '30d' }], // context with params
+  });
+
+  const { data: recentOrders } = useQuery({
+    queryKey: ['orders', { status: 'recent', limit: 10 }],
+  });
+
+  const { data: products } = useQuery({
+    queryKey: ['products'], // Simple endpoint without params
+  });
+
+  // Clean, type-safe, no repetitive queryFn! 🎉
+}
+```
+
+## Best Practices
+
+### 1. **Consistent Query Key Structure**
+
+```typescript
+// Good: With parameters
+const { data } = useQuery({
+  queryKey: ['users', { page: 1, limit: 20 }],
+});
+
+// Also good: Simple endpoint
+const { data } = useQuery({
+  queryKey: ['categories'],
+});
+```
+
+### 2. **Comprehensive Type Definitions**
+
+```typescript
+type QueryKey = [
+  context: 'users' | 'products' | 'orders' | 'dashboard' | 'categories',
+  params?: Record<string, unknown>,
+];
+```
+
+### 3. **Error Handling**
+
+```typescript
+queryFn: async ({ queryKey, signal }) => {
+  const [context, params] = queryKey;
+
+  try {
+    return await request(generateUrl(context, params), {
+      signal,
+      withAuth: true,
+    });
+  } catch (error) {
+    throw new Error(`Failed to fetch ${context}: ${error.message}`);
+  }
+};
+```
+
+## When to Use This Approach
+
+This approach is **perfect** for:
+
+- ✅ Applications with many GET endpoints
+- ✅ RESTful and consistent APIs
+- ✅ Teams that want to focus on business logic
+- ✅ Projects requiring rapid development
+- ✅ Codebases prioritizing maintainability
+- ✅ Type-safe development environments
+
+Might be **overkill** for:
+
+- ❌ Applications with only 2-3 endpoints
+- ❌ APIs where every endpoint needs completely different logic
+- ❌ Experimental APIs that change frequently
+
+## Conclusion
+
+By leveraging React Query's default `queryFn` with TypeScript's module
+augmentation, we can:
+
+- Drastically reduce boilerplate code
+- Speed up development
+- Focus on business logic instead of infrastructure
+- Maintain type safety throughout the application
+- Create a more maintainable codebase
+
+Since React Query is designed primarily for GET requests, this approach aligns
+perfectly with its nature. I've used this in production applications, and
+honestly, it's a game changer!
+
+Try implementing this in your project and feel the difference. You'll be amazed
+at how simple data fetching becomes.
+
+Happy coding! 🚀
+
+---
+
+_Have you tried this approach? Share your experience in the comments! Or maybe
+you have an even cooler variation?_
