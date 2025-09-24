@@ -1,3 +1,7 @@
+---
+title: This is Lorem Ipsum
+---
+
 # Intus est alumno
 
 ## Potentia est sentit te

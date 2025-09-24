@@ -2,14 +2,14 @@ import type { Metadata } from 'next';
 
 import Link from 'next/link';
 
-import { getMarkdownFileNames } from '~/lib/markdown';
+import { getBlogPosts } from '~/lib/markdown';
 
 export const metadata: Metadata = {
   title: 'Blog',
 };
 
 export default function Page() {
-  const files = getMarkdownFileNames();
+  const files = getBlogPosts().map((post) => post.slug);
 
   return (
     <main className="md:col-span-2 space-y-6">

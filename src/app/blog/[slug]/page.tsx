@@ -1,4 +1,4 @@
-import { getMarkdownFileNames } from '~/lib/markdown';
+import { getBlogPosts } from '~/lib/markdown';
 
 export default async function Page({
   params,
@@ -12,9 +12,22 @@ export default async function Page({
 }
 
 export function generateStaticParams() {
-  const slugs = getMarkdownFileNames();
+  const slugs = getBlogPosts().map((post) => post.slug);
 
   return slugs.map((slug) => ({ slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const post = getBlogPosts().find((post) => post.slug === slug);
+
+  if (!post) return;
+
+  return post.metadata;
 }
 
 export const dynamicParams = false;
