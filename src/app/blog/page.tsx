@@ -9,7 +9,9 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  const files = getBlogPosts().map((post) => post.slug);
+  const posts = getBlogPosts();
+
+  console.log(posts);
 
   return (
     <main className="md:col-span-2 space-y-6">
@@ -18,10 +20,10 @@ export default function Page() {
       <hr className="opacity-10" />
 
       <ul>
-        {files.map((file, key) => (
+        {posts.map((post, key) => (
           <li key={key}>
-            <Link className="capitalize" href={`/blog/${file}`}>
-              {file}
+            <Link className="capitalize" href={`/blog/${post.slug}`}>
+              {post.metadata.title?.toString()}
             </Link>
           </li>
         ))}
