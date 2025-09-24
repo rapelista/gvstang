@@ -23,7 +23,7 @@ export default async function Page() {
           const keywords = Array.from(post.metadata.keywords || []);
 
           return (
-            <li key={key}>
+            <li key={key} className="space-y-4">
               <Link
                 className="group block space-y-2"
                 href={`/blog/${post.slug}`}
@@ -35,17 +35,17 @@ export default async function Page() {
                 <p className="line-clamp-3 text-accent-foreground/90 group-hover:text-accent-foreground transition-colors duration-200">
                   {post.excerpt || 'Oops, no excerpt available.'}
                 </p>
-
-                {keywords.length > 0 ? (
-                  <div className="mt-4 flex gap-2">
-                    {keywords.map((keyword, key) => (
-                      <Badge key={key} variant="outline">
-                        {keyword}
-                      </Badge>
-                    ))}
-                  </div>
-                ) : null}
               </Link>
+
+              {keywords.length > 0 ? (
+                <div className="flex gap-2">
+                  {keywords.map((keyword, key) => (
+                    <Badge key={key} variant="outline">
+                      {keyword}
+                    </Badge>
+                  ))}
+                </div>
+              ) : null}
             </li>
           );
         })}

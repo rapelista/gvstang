@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning={true}>
       <body className={cn(fontSans.variable, fontMono.variable, 'dark')}>
-        <div className="container mx-auto max-w-[1440px]">
+        <div className="container mx-auto max-w-[1440px] min-h-[calc(100svh-3.25rem)] md:min-h-[calc(100svh-4.25rem)]">
           <div
             className={cn(
               'grid md:grid-cols-3 lg:grid-cols-4',
@@ -40,7 +40,7 @@ export default function RootLayout({
           </div>
         </div>
 
-        <footer className="max-w-sm mx-auto text-center text-sm pb-8 md:pb-12">
+        <footer className="max-w-sm mx-auto text-center text-sm h-13 md:h-17">
           Made with ♥ by Gvstang &mdash; 2025
         </footer>
       </body>
