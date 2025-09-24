@@ -3,7 +3,7 @@ import { Suspense } from 'react';
 
 import { BrandLoading } from '~/components/brand-loading';
 import { BrandWrapper } from '~/components/brand-wrapper';
-import { ThemeProvider } from '~/components/theme-provider';
+import { Providers } from '~/components/providers';
 import { ThemeSwitcher } from '~/components/theme-switcher';
 import { fontMono, fontSans } from '~/configs/fonts';
 import { cn } from '~/lib/utils';
@@ -20,18 +20,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      suppressHydrationWarning
-      className={cn(fontSans.variable, fontMono.variable)}
-      lang="en"
-    >
-      <body>
-        <ThemeProvider
-          disableTransitionOnChange
-          enableSystem
-          attribute="class"
-          defaultTheme="system"
-        >
+    <html lang="en" suppressHydrationWarning={true}>
+      <body className={cn(fontSans.variable, fontMono.variable)}>
+        <Providers>
           <div className="container mx-auto max-w-[1440px]">
             <div
               className={cn(
@@ -54,13 +45,15 @@ export default function RootLayout({
                   </li>
                 </ul>
 
-                <ThemeSwitcher />
+                <Suspense>
+                  <ThemeSwitcher />
+                </Suspense>
               </div>
 
               {children}
             </div>
           </div>
-        </ThemeProvider>
+        </Providers>
 
         <footer className="max-w-sm mx-auto text-center text-sm pb-8 md:pb-12">
           Made with ♥ by Gvstang &mdash; 2025
