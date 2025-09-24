@@ -13,9 +13,11 @@ const withMdx = createMdx({
   extension: /\.(md|mdx)$/,
   options: {
     remarkPlugins: [
+      'remark-heading-id',
       'remark-frontmatter',
       ['remark-mdx-frontmatter', { name: 'metadata' }],
       'remark-gfm',
+      'remark-toc',
     ],
   },
 });
