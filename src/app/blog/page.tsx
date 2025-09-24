@@ -33,7 +33,8 @@ export default async function Page() {
                 </p>
 
                 <p className="line-clamp-3 text-accent-foreground/90 group-hover:text-accent-foreground transition-colors duration-200">
-                  {post.excerpt || 'Oops, no excerpt available.'}
+                  {post.metadata.description ||
+                    'Oops, no description available.'}
                 </p>
               </Link>
 

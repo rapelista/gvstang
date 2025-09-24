@@ -4,7 +4,6 @@ import { readdirSync } from 'node:fs';
 import path from 'node:path';
 
 interface MarkdownMetadata extends Metadata {
-  excerpt?: string;
   published?: string;
 }
 
@@ -24,7 +23,6 @@ async function getBlogPostsData(directory: string): Promise<
   {
     slug: string;
     metadata: Metadata;
-    excerpt?: string;
     published?: Date;
   }[]
 > {
@@ -32,13 +30,11 @@ async function getBlogPostsData(directory: string): Promise<
 
   return await Promise.all(
     files.map(async (file) => {
-      const { excerpt, published, ...metadata } =
-        await getBlogPostsMetadata(file);
+      const { published, ...metadata } = await getBlogPostsMetadata(file);
 
       return {
         slug: file.replace(/\.mdx?$/, ''),
         metadata,
-        excerpt,
         published: published ? new Date(published) : undefined,
       };
     }),
@@ -49,7 +45,6 @@ export async function getBlogPosts(): Promise<
   {
     slug: string;
     metadata: Metadata;
-    excerpt?: string;
   }[]
 > {
   return await getBlogPostsData(
