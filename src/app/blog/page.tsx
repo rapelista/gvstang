@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 
 import Link from 'next/link';
 
+import { Badge } from '~/components/ui/badge';
 import { getBlogPosts } from '~/lib/markdown';
 
 export const metadata: Metadata = {
@@ -17,21 +18,38 @@ export default async function Page() {
 
       <hr />
 
-      <ul>
-        {posts.map((post, key) => (
-          <li key={key}>
-            <Link className="capitalize" href={`/blog/${post.slug}`}>
-              {post.metadata.title?.toString()}
-            </Link>
-          </li>
-        ))}
+      <ul className="space-y-8">
+        {posts.map((post, key) => {
+          const keywords = Array.from(post.metadata.keywords || []);
+
+          return (
+            <li key={key}>
+              <Link
+                className="group block space-y-2"
+                href={`/blog/${post.slug}`}
+              >
+                <p className="text-3xl font-semibold max-w-3/4 text-wrap line-clamp-2">
+                  {post.metadata.title?.toString()}
+                </p>
+
+                <p className="line-clamp-3 text-accent-foreground/90 group-hover:text-accent-foreground transition-colors duration-200">
+                  {post.excerpt || 'Oops, no excerpt available.'}
+                </p>
+
+                {keywords.length > 0 ? (
+                  <div className="mt-4 flex gap-2">
+                    {keywords.map((keyword, key) => (
+                      <Badge key={key} variant="outline">
+                        {keyword}
+                      </Badge>
+                    ))}
+                  </div>
+                ) : null}
+              </Link>
+            </li>
+          );
+        })}
       </ul>
-
-      <hr />
-
-      {Array.from({ length: 6 }, (_, i) => (
-        <div key={i} className="h-40 aspect-video bg-accent animate-pulse" />
-      ))}
     </main>
   );
 }
