@@ -12,7 +12,7 @@ export function Navbar() {
   return (
     <ul className="text-lg">
       <li>
-        <Link className="flex items-center gap-1" href="/blog">
+        <Link className="inline-flex items-center gap-1" href="/blog">
           <span
             className={cn(
               'leading-0 pt-1.5 transition-colors duration-200',
@@ -25,7 +25,7 @@ export function Navbar() {
         </Link>
       </li>
       <li>
-        <Link className="flex items-center gap-1" href="/projects">
+        <Link className="inline-flex items-center gap-1" href="/projects">
           <span
             className={cn(
               'leading-0 pt-1.5 transition-colors duration-200',
