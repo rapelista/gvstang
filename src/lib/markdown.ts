@@ -5,6 +5,7 @@ import path from 'node:path';
 
 interface MarkdownMetadata extends Metadata {
   excerpt?: string;
+  published?: string;
 }
 
 function getMarkdownFileNames(directory: string): string[] {
@@ -23,18 +24,22 @@ async function getBlogPostsData(directory: string): Promise<
   {
     slug: string;
     metadata: Metadata;
+    excerpt?: string;
+    published?: Date;
   }[]
 > {
   const files = getMarkdownFileNames(directory);
 
   return await Promise.all(
     files.map(async (file) => {
-      const { excerpt, ...metadata } = await getBlogPostsMetadata(file);
+      const { excerpt, published, ...metadata } =
+        await getBlogPostsMetadata(file);
 
       return {
         slug: file.replace(/\.mdx?$/, ''),
         metadata,
         excerpt,
+        published: published ? new Date(published) : undefined,
       };
     }),
   );
