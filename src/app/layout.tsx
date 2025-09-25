@@ -1,11 +1,10 @@
-import Link from 'next/link';
 import { Suspense } from 'react';
 
-import { GitHub } from '~/assets/svg/github';
-import { LinkedIn } from '~/assets/svg/linked-in';
 import { BrandLoading } from '~/components/brand-loading';
 import { BrandWrapper } from '~/components/brand-wrapper';
 import { Navbar } from '~/components/navbar';
+import { Navlink } from '~/components/navlink';
+import { Social } from '~/components/social';
 import { fontMono, fontSans } from '~/configs/fonts';
 import { cn } from '~/lib/utils';
 
@@ -31,29 +30,15 @@ export default function RootLayout({
               'md:pt-8 md:pb-12 md:[&>*]:px-12 md:gap-y-12',
             )}
           >
-            <div className="space-y-6">
+            <Navbar>
               <Suspense fallback={<BrandLoading />}>
                 <BrandWrapper />
               </Suspense>
 
-              <Navbar />
+              <Navlink />
 
-              <ul className="flex gap-2">
-                <li>
-                  <Link href="https://github.com/rapelista" target="_blank">
-                    <GitHub height={16} width={16} />
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="https://www.linkedin.com/in/farihakmal"
-                    target="_blank"
-                  >
-                    <LinkedIn height={16} width={16} />
-                  </Link>
-                </li>
-              </ul>
-            </div>
+              <Social />
+            </Navbar>
 
             {children}
           </div>
