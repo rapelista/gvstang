@@ -71,11 +71,11 @@ export default async function Page() {
         })}
       </ul>
 
-      <h2 className="text-xl font-medium mt-12">Curated Projects</h2>
+      {/* <h2 className="text-xl font-medium mt-12">Curated Projects</h2>
 
       {Array.from({ length: 3 }, (_, i) => (
         <div key={i} className="h-40 aspect-video bg-accent animate-pulse" />
-      ))}
+      ))} */}
     </main>
   );
 }
