@@ -81,6 +81,8 @@ export async function getBlogPosts(): Promise<
   {
     slug: string;
     metadata: Metadata;
+    published?: Date;
+    toc: Toc;
   }[]
 > {
   return await getBlogPostsData(

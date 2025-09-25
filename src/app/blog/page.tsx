@@ -3,14 +3,14 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 import { Badge } from '~/components/ui/badge';
-import { getBlogPosts } from '~/lib/markdown';
+import { getOrderedPosts } from '~/lib/posts';
 
 export const metadata: Metadata = {
   title: 'Blog',
 };
 
 export default async function Page() {
-  const posts = await getBlogPosts();
+  const posts = await getOrderedPosts();
 
   return (
     <main className="min-md:max-lg:col-span-full lg:col-span-2 space-y-6">
@@ -30,7 +30,7 @@ export default async function Page() {
                 className="group block space-y-2"
                 href={`/blog/${post.slug}`}
               >
-                <p className="text-3xl font-semibold max-w-3/4 text-wrap line-clamp-2">
+                <p className="text-3xl font-semibold max-w-11/12 text-wrap line-clamp-2">
                   {post.metadata.title?.toString()}
                 </p>
 
@@ -40,15 +40,25 @@ export default async function Page() {
                 </p>
               </Link>
 
-              {keywords.length > 0 ? (
-                <div className="flex gap-2">
-                  {keywords.map((keyword, key) => (
-                    <Badge key={key} variant="outline">
-                      {keyword}
-                    </Badge>
-                  ))}
-                </div>
-              ) : null}
+              <div className="flex items-center justify-between">
+                {keywords.length > 0 ? (
+                  <div className="flex gap-2">
+                    {keywords.map((keyword, key) => (
+                      <Badge key={key} className="capitalize" variant="outline">
+                        {keyword}
+                      </Badge>
+                    ))}
+                  </div>
+                ) : null}
+
+                <span className="inline-block text-accent-foreground/90 text-sm font-light">
+                  {new Date(post.published || '').toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  })}
+                </span>
+              </div>
             </li>
           );
         })}
