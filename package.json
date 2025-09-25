@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@next/mdx": "15.6.0-canary.27",
+    "@octokit/core": "^7.0.4",
     "@radix-ui/react-slot": "^1.2.3",
     "@stefanprobst/rehype-extract-toc": "^3.0.0",
     "@types/mdx": "^2.0.13",
