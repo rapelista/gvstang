@@ -94,7 +94,6 @@ type QueryKey = [
 declare module '@tanstack/react-query' {
   interface Register {
     queryKey: QueryKey;
-    mutationKey: QueryKey;
   }
 }
 ```
@@ -156,12 +155,9 @@ function makeQueryClient() {
         queryFn: async ({ queryKey, signal }) => {
           const [context, params] = queryKey;
 
-          const headers = new Headers();
-
           // Assume we have custom functions to handle these things
           return await request(generateUrl(context, params), {
             signal,
-            headers,
           });
         },
       },
@@ -272,7 +268,6 @@ queryFn: async ({ queryKey, signal }) => {
   try {
     return await request(generateUrl(context, params), {
       signal,
-      withAuth: true,
     });
   } catch (error) {
     throw new Error(`Failed to fetch ${context}: ${error.message}`);
