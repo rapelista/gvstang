@@ -8,6 +8,10 @@ export default function Layout({
 }>) {
   return (
     <>
+      <div className="md:hidden px-4 w-full">
+        <hr />
+      </div>
+
       <div
         className={cn(
           'max-w-screen',

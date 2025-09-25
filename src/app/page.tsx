@@ -7,6 +7,8 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <main className="md:col-span-2 space-y-6">
+      <hr className="md:hidden" />
+
       <h1 className="text-4xl font-medium">Home</h1>
 
       <hr />
