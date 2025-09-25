@@ -14,10 +14,8 @@ export const experimental_ppr = true;
 
 export default function RootLayout({
   children,
-  secondary,
 }: Readonly<{
   children: React.ReactNode;
-  secondary: React.ReactNode;
 }>) {
   return (
     <html lang="en" suppressHydrationWarning={true}>
@@ -39,8 +37,6 @@ export default function RootLayout({
             </div>
 
             {children}
-
-            {secondary}
           </div>
         </div>
 
