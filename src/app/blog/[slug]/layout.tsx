@@ -23,7 +23,14 @@ export default function Layout({
         {children}
       </div>
 
-      <div className="relative">{toc}</div>
+      <div
+        className={cn(
+          'sticky top-8 max-h-[calc(100svh-64px)] space-y-2 overflow-hidden',
+        )}
+      >
+        <h3 className="text-xl font-semibold">Table of Contents</h3>
+        <div className="h-full overflow-y-scroll">{toc}</div>
+      </div>
     </>
   );
 }
