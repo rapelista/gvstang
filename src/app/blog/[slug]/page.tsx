@@ -1,3 +1,5 @@
+import { Metadata } from 'next';
+
 import { getBlogPostData, getBlogPosts } from '~/lib/markdown';
 
 export default async function Page({
@@ -25,7 +27,16 @@ export async function generateMetadata({
   const { slug } = await params;
   const { metadata } = await getBlogPostData(`${slug}.mdx`);
 
-  return metadata;
+  return {
+    ...metadata,
+    twitter: {
+      card: 'summary',
+    },
+    openGraph: {
+      siteName: metadata.title?.toString() || 'Gvstang',
+      url: `https://www.gvstang.com/blog/${slug}`,
+    },
+  } satisfies Metadata;
 }
 
 export const dynamicParams = false;
