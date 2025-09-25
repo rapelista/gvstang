@@ -15,7 +15,8 @@ export function ToCWrapper({ children }: React.PropsWithChildren) {
         ref={ref}
         className={cn(
           'sticky top-8 max-h-[calc(100svh-64px)] space-y-2 overflow-hidden',
-          'max-md:fixed max-md:bottom-24 max-md:right-6 max-md:bg-background max-md:pt-6 max-md:border max-md:rounded-xl max-md:max-w-sm max-md:data-[hidden=true]:opacity-0 max-md:data-[hidden=true]:pointer-events-none max-md:transition-opacity max-md:duration-200',
+          'max-md:fixed max-md:bottom-24 max-md:right-6 max-md:backdrop-blur-xl max-md:pt-6 max-md:border max-md:rounded-xl max-md:max-w-[calc(100svw-48px)] max-md:data-[hidden=true]:opacity-0 max-md:data-[hidden=true]:pointer-events-none max-md:transition-opacity max-md:duration-200',
+          'pb-16 space-y-4',
         )}
         data-hidden="true"
       >
