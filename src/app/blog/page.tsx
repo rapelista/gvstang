@@ -13,7 +13,7 @@ export default async function Page() {
   const posts = await getBlogPosts();
 
   return (
-    <main className="min-md:max-lg:col-span-full space-y-6">
+    <main className="min-md:max-lg:col-span-full lg:col-span-2 space-y-6">
       <hr className="md:hidden" />
 
       <h1 className="text-4xl font-medium">Blog</h1>
