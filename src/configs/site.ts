@@ -32,4 +32,14 @@ export const metadata: Metadata = {
     process.env.NODE_ENV === 'production'
       ? new URL('https://www.gvstang.com')
       : undefined,
+
+  twitter: {
+    card: 'summary_large_image',
+  },
+
+  openGraph: {
+    siteName: 'Gvstang',
+    type: 'website',
+    url: 'https://www.gvstang.com',
+  },
 };

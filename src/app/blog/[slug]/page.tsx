@@ -29,9 +29,6 @@ export async function generateMetadata({
 
   return {
     ...metadata,
-    twitter: {
-      card: 'summary',
-    },
     openGraph: {
       siteName: metadata.title?.toString() || 'Gvstang',
       url: `https://www.gvstang.com/blog/${slug}`,
