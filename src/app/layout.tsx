@@ -1,6 +1,3 @@
-import { Suspense } from 'react';
-
-import { BrandLoading } from '~/components/brand-loading';
 import { BrandWrapper } from '~/components/brand-wrapper';
 import { Navbar } from '~/components/navbar';
 import { Navlink } from '~/components/navlink';
@@ -31,9 +28,7 @@ export default function RootLayout({
             )}
           >
             <Navbar>
-              <Suspense fallback={<BrandLoading />}>
-                <BrandWrapper />
-              </Suspense>
+              <BrandWrapper />
 
               <Navlink />
 
