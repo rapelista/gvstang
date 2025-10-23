@@ -9,8 +9,6 @@ import '~/styles/globals.css';
 
 export { metadata } from '~/configs/site';
 
-export const experimental_ppr = true;
-
 export default function RootLayout({
   children,
 }: Readonly<{

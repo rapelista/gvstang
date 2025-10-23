@@ -1,7 +1,17 @@
 import Link from 'next/link';
 
-import { filterTocDepthOne, getBlogPostData } from '~/lib/markdown';
+import {
+  filterTocDepthOne,
+  getBlogPostData,
+  getBlogPosts,
+} from '~/lib/markdown';
 import { cn } from '~/lib/utils';
+
+export async function generateStaticParams() {
+  const posts = await getBlogPosts();
+
+  return posts.map((post) => ({ slug: post.slug }));
+}
 
 export default async function Page({
   params,
@@ -11,7 +21,6 @@ export default async function Page({
   const { slug } = await params;
   const { toc } = await getBlogPostData(`${slug}.mdx`);
 
-  // Filter out headings with depth 1
   const filteredToc = filterTocDepthOne(toc);
 
   const renderToc = (items: typeof toc) => {
