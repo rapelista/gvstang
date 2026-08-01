@@ -38,7 +38,7 @@ export default function RootLayout({
         </div>
 
         <footer className="max-w-sm mx-auto text-center text-sm h-13 md:h-17">
-          Made with ♥ by Gvstang &mdash; 2025
+          Made with ♥ by Gvstang &mdash; {new Date().getFullYear()}
         </footer>
       </body>
     </html>
