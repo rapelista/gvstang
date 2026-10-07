@@ -13,9 +13,11 @@ export default function Page() {
 
       <hr />
 
-      {Array.from({ length: 6 }, (_, i) => (
-        <div key={i} className="h-40 aspect-video bg-accent animate-pulse" />
-      ))}
+      <p className="text-2xl font-medium">Coming Soon</p>
+      <p className="text-muted-foreground">
+        Sesuatu yang menarik sedang saya racik. Nantikan proyek-proyek terbaik
+        saya di sini.
+      </p>
     </main>
   );
 }
